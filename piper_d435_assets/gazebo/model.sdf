@@ -1,0 +1,1034 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.9">
+  <model name="piper_d435" canonical_link="base">
+    <static>false</static>
+    <self_collide>false</self_collide>
+    <link name="base">
+      <pose relative_to="__model__">0 0 0 0 0 0</pose>
+      <visual name="geom_13">
+        <pose>-0.009278127840227168 -2.735914773830003e-06 0.03983125848603579 1.357718715513232 0.0003348320257043902 1.571092094192665</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_16.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+        </material>
+      </visual>
+      <collision name="piper_base_collision">
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/source/piper_dabai/assets/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="link1">
+      <pose relative_to="base">0 0 0.123 0 0 0</pose>
+      <inertial>
+        <pose>0.00201 -0.0022 -0.02127 1.310141732525417 -0.7228825795640573 0.1684882029740707</pose>
+        <mass>0.11</mass>
+        <inertia>
+          <ixx>0.000114473</ixx>
+          <iyy>0.000110765</iyy>
+          <izz>7.120229999999999e-05</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <visual name="geom_85">
+        <pose>-0.0006705799523949835 -0.001005313829313227 -0.008251549890294025 1.506693034860491 0.130764672439263 -0.004723825395311132</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_17.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+        </material>
+      </visual>
+      <collision name="link1_urdf_hull">
+        <pose>-0.0006705799523949835 -0.001005313829313227 -0.008251549890294025 1.506693034860491 0.130764672439263 -0.004723825395311132</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_17_hull.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+    </link>
+    <joint name="joint1" type="revolute">
+      <parent>base</parent>
+      <child>link1</child>
+      <pose relative_to="link1">0 0 0 0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2.618</lower>
+          <upper>2.618</upper>
+          <effort>32</effort>
+          <velocity>5</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="link2">
+      <pose relative_to="link1">0 0 0 1.570799659532207 -0.1358998840528414 3.141585339357938</pose>
+      <inertial>
+        <pose>0.25986 -0.009129999999999999 0.00237 1.575351572499949 -0.5939141565307829 1.541423876855733</pose>
+        <mass>1.16</mass>
+        <inertia>
+          <ixx>0.0163176</ixx>
+          <iyy>0.0162777</iyy>
+          <izz>0.000957388</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <visual name="geom_87">
+        <pose>0.1643813408492925 -0.01375715464024595 0.0005389471895406091 1.573896328116449 0.01144202798468741 1.552809321148278</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_18.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+        </material>
+      </visual>
+      <collision name="geom_88">
+        <pose>0 0 0 0 0 1.570796326794897</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.04</radius>
+            <length>0.04</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="geom_88_end_-1">
+        <pose>0 0 -0.02 0 0 1.570796326794897</pose>
+        <geometry>
+          <sphere>
+            <radius>0.04</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="geom_88_end_+1">
+        <pose>0 0 0.02 0 0 1.570796326794897</pose>
+        <geometry>
+          <sphere>
+            <radius>0.04</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="geom_89">
+        <pose>0.1264 -0.025 0 -1.49593647908413 1.421494391564256 -1.645656174505663</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.03</radius>
+            <length>0.1686</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="geom_89_end_-1">
+        <pose>0.04303782447466009 -0.01249567367119901 -0.0009378244746600732 -1.49593647908413 1.421494391564256 -1.645656174505663</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="geom_89_end_+1">
+        <pose>0.2097621755253399 -0.03750432632880099 0.0009378244746600732 -1.49593647908413 1.421494391564256 -1.645656174505663</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+    </link>
+    <joint name="joint2" type="revolute">
+      <parent>link1</parent>
+      <child>link2</child>
+      <pose relative_to="link2">0 0 0 0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>3.14</upper>
+          <effort>32</effort>
+          <velocity>5</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="link3">
+      <pose relative_to="link2">0.28503 0 0 0 0 -1.793899896745054</pose>
+      <inertial>
+        <pose>-0.00726 -0.19029 -0.00045 1.560806879756257 -0.09260742466436422 0.03537970495183107</pose>
+        <mass>0.59</mass>
+        <inertia>
+          <ixx>0.00558951</ixx>
+          <iyy>0.00554224</iyy>
+          <izz>0.000258829</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <visual name="geom_90">
+        <pose>-0.01937722665543522 -0.1078338402609654 -0.0004063113798687778 1.56126127647186 -0.02320550730748372 -0.07370813677746968</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_19.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+        </material>
+      </visual>
+      <collision name="geom_91">
+        <pose>0 0 0 0 0 1.570796326794897</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.04</radius>
+            <length>0.04</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="geom_91_end_-1">
+        <pose>0 0 -0.02 0 0 1.570796326794897</pose>
+        <geometry>
+          <sphere>
+            <radius>0.04</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="geom_91_end_+1">
+        <pose>0 0 0.02 0 0 1.570796326794897</pose>
+        <geometry>
+          <sphere>
+            <radius>0.04</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="geom_92">
+        <pose>-0.01 -0.1326 0 1.569546327445938 -0.04995835675690086 0.05002081769439604</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.025</radius>
+            <length>0.1248</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="geom_92_end_-1">
+        <pose>-0.01311610486891386 -0.07027790262172284 -7.790262172284663e-05 1.569546327445938 -0.04995835675690086 0.05002081769439604</pose>
+        <geometry>
+          <sphere>
+            <radius>0.025</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="geom_92_end_+1">
+        <pose>-0.006883895131086142 -0.1949220973782771 7.790262172284663e-05 1.569546327445938 -0.04995835675690086 0.05002081769439604</pose>
+        <geometry>
+          <sphere>
+            <radius>0.025</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+    </link>
+    <joint name="joint3" type="revolute">
+      <parent>link2</parent>
+      <child>link3</child>
+      <pose relative_to="link3">0 0 0 0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2.967</lower>
+          <upper>0</upper>
+          <effort>32</effort>
+          <velocity>5</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="link4">
+      <pose relative_to="link3">-0.021984 -0.25075 0 1.570800569437271 0 0</pose>
+      <inertial>
+        <pose>0.00054 -0.00162 -0.00399 0.0467829556818839 -0.2678650128722899 1.033920776898464</pose>
+        <mass>0.37</mass>
+        <inertia>
+          <ixx>0.000174523</ixx>
+          <iyy>0.000169749</iyy>
+          <izz>0.000142038</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <visual name="geom_93">
+        <pose>-0.0006285443788105868 0.006176698262155449 -0.008451435256494666 -0.4517607964130117 0.1252929154941316 -0.01393686544876249</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_20.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+        </material>
+      </visual>
+      <collision name="geom_94">
+        <pose>0 0 0 1.570796326794897 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.03</radius>
+            <length>0.03</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="geom_94_end_-1">
+        <pose>0 0.015 0 1.570796326794897 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="geom_94_end_+1">
+        <pose>0 -0.015 0 1.570796326794897 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+    </link>
+    <joint name="joint4" type="revolute">
+      <parent>link3</parent>
+      <child>link4</child>
+      <pose relative_to="link4">0 0 0 0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.745</lower>
+          <upper>1.745</upper>
+          <effort>8</effort>
+          <velocity>5</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="link5">
+      <pose relative_to="link4">0 0 0 -1.570800569437271 0 0</pose>
+      <inertial>
+        <pose>0.0002 -0.06142 -0.00257 0.277731720656585 -1.19352389857178 1.284371367976925</pose>
+        <mass>0.38</mass>
+        <inertia>
+          <ixx>0.000302439</ixx>
+          <iyy>0.000295278</iyy>
+          <izz>0.000150843</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <visual name="geom_95">
+        <pose>-0.0001398642150242105 -0.04353497691217347 -0.006457170587556304 0.3693305464883346 -1.122934913006802 1.169009345728856</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_21.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+        </material>
+      </visual>
+      <collision name="link5_source_mesh_hull">
+        <pose>-0.0001398642150242105 -0.04353497691217347 -0.006457170587556304 0.3693305464883346 -1.122934913006802 1.169009345728856</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_21_hull.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+    </link>
+    <joint name="joint5" type="revolute">
+      <parent>link4</parent>
+      <child>link5</child>
+      <pose relative_to="link5">0 0 0 0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.22</lower>
+          <upper>1.22</upper>
+          <effort>8</effort>
+          <velocity>5</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="link6">
+      <pose relative_to="link5">8.8259e-05 -0.091 0 1.570800569437271 0 0</pose>
+      <inertial>
+        <pose>-0.0735584 -0.0270802 0.0303962 0.2090654529671753 0.05004024441534405 -1.735268125178576</pose>
+        <mass>0.7976323</mass>
+        <inertia>
+          <ixx>0.00023745</ixx>
+          <iyy>0.00069875</iyy>
+          <izz>0.00081826</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <visual name="geom_97">
+        <pose>-0.0002349677187775782 -0.0001192871923864907 0.038265405425183 1.568136045981646 0.003525323999222563 -3.10563264267181</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_24.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+        </material>
+      </visual>
+      <collision name="geom_98">
+        <pose>0 -0 0.06 -1.570000326963016 3.168078996917956e-07 1.570000326963016</pose>
+        <geometry>
+          <box>
+            <size>0.164 0.02 0.02</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="piper_d435_wrist_mount_visual">
+        <pose>-0.0463235796864658 0.001548213483945881 0.02098397872545624 0.4533914273087628 1.323367719393901 0.1121000042289639</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_25.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.699999988079071 0.699999988079071 0.699999988079071 1</ambient>
+          <diffuse>0.699999988079071 0.699999988079071 0.699999988079071 1</diffuse>
+        </material>
+      </visual>
+      <collision name="d435_camera_body_collision">
+        <pose>-0.073608446242865 0.010986317207782 0.039206889332246 -0.001692832098986858 -1.220934030738766 -0.000794180072339239</pose>
+        <geometry>
+          <box>
+            <size>0.02505 0.09 0.025</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="wrist_d435_visual_00">
+        <pose>-0.07944190219842689 -0.02843461394302212 0.04233452091929536 0.3498618346765709 0.0005802491882052063 1.568411866345147</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_26.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <visual name="wrist_d435_visual_01">
+        <pose>-0.09018269882012472 0.01826918384066213 0.02767064307947042 0.3498618346765709 0.0005802491882052063 1.568411866345147</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_27.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <visual name="wrist_d435_visual_02">
+        <pose>-0.09021727348798797 0.0037692272989648 0.02767905666621508 0.3498618346765709 0.0005802491882052063 1.568411866345147</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_28.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <visual name="wrist_d435_visual_03">
+        <pose>-0.0720412960992801 0.01365764533047123 0.03296561011285315 0.3498618346765709 0.0005802491882052063 1.568411866345147</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_29.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <visual name="wrist_d435_visual_04">
+        <pose>-0.0760994984706837 -0.02176160016130758 0.032729422842149 0.3498618346765709 0.0005802491882052063 1.568411866345147</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_30.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <visual name="wrist_d435_visual_05">
+        <pose>-0.06731240146912687 -0.02846635339433084 0.03790893015848763 0.3498618346765709 0.0005802491882052063 1.568411866345147</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_31.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <visual name="wrist_d435_visual_06">
+        <pose>-0.06783955594686962 0.05105365025892258 0.03836518233678062 0.3498618346765709 0.0005802491882052063 1.568411866345147</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_32.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <visual name="wrist_d435_visual_07">
+        <pose>-0.0831714581837168 -0.02048961787672991 0.041570406401563 0.3498618346765709 0.0005802491882052063 1.568411866345147</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_33.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <visual name="wrist_d435_visual_08">
+        <pose>-0.08303552752988906 0.03651019169780348 0.04153736640442737 0.3498618346765709 0.0005802491882052063 1.568411866345147</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_34.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <visual name="wrist_d435_visual_09">
+        <pose>-0.07323926419801098 -0.02852899406258854 0.04049830884876873 0.3498618346765709 0.0005802491882052063 1.568411866345147</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_35.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <visual name="wrist_d435_visual_10">
+        <pose>-0.08570826062153244 -0.001864368032156179 0.0360653615463347 0.3498618346765709 0.0005802491882052063 1.568411866345147</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_36.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <visual name="wrist_d435_visual_11">
+        <pose>-0.0759802758244791 0.02823824872435709 0.03270041039994175 0.3498618346765709 0.0005802491882052063 1.568411866345147</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_37.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <visual name="wrist_d435_visual_12">
+        <pose>-0.07616957702308132 0.01161876721034984 0.03185591752620223 -1.608860242049179 -1.232221649064141 0.03658715178539751</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_38.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <visual name="wrist_d435_visual_13">
+        <pose>-0.0649328184157973 -0.02207045583597974 0.03489161132866105 0.3498618346765709 0.0005802491882052063 1.568411866345147</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_39.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <visual name="wrist_d435_visual_14">
+        <pose>-0.07384119357994101 0.04348078250956164 0.03835162060185819 0.3498618346765709 0.0005802491882052063 1.568411866345147</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_40.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <visual name="wrist_d435_visual_15">
+        <pose>-0.0733085932414699 0.04348599338582483 0.03979734392885619 0.3498618346765709 0.0005802491882052063 1.568411866345147</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_41.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <visual name="wrist_d435_visual_16">
+        <pose>-0.0733549210754591 0.04348605410598645 0.03967212480080811 0.3498618346765709 0.0005802491882052063 1.568411866345147</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_42.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <visual name="wrist_d435_visual_17">
+        <pose>-0.06382448817485099 0.01095943211956838 0.03307922468529954 1.571413994217171 -0.3498617732523692 3.138996476515384</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_43.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.749019980430603 0.749019980430603 0.749019980430603 1</ambient>
+          <diffuse>0.749019980430603 0.749019980430603 0.749019980430603 1</diffuse>
+        </material>
+      </visual>
+      <collision name="wrist_d435_bracket_collision">
+        <pose>-0.0463235796864658 0.001548213483945881 0.02098397872545624 0.4533914273087628 1.323367719393901 0.1121000042289639</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_25_hull.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.6</mu>
+              <mu2>0.6</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <sensor name="piper_wrist_camera" type="rgbd_camera">
+        <pose>-0.07379376929766 0.043501833790784 0.038766391570204 0.019145621025495 -1.224069579944234 -0.01514904151809926</pose>
+        <always_on>true</always_on>
+        <update_rate>10</update_rate>
+        <topic>/go2_piper_d435/piper_wrist_camera</topic>
+        <camera>
+          <horizontal_fov>0.7514132513089672</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>640</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.06</near>
+            <far>10</far>
+          </clip>
+        </camera>
+      </sensor>
+    </link>
+    <joint name="joint6" type="revolute">
+      <parent>link5</parent>
+      <child>link6</child>
+      <pose relative_to="link6">0 0 0 0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2.0944</lower>
+          <upper>2.0944</upper>
+          <effort>8</effort>
+          <velocity>5</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="link7">
+      <pose relative_to="link6">0 0 0.13503 1.570800569437271 0 0</pose>
+      <inertial>
+        <pose>0.000277817 -0.0467674 -0.009210299999999999 -0.04203045104981917 -1.38233000687569 1.574181929948243</pose>
+        <mass>0.0264822</mass>
+        <inertia>
+          <ixx>1.45133e-05</ixx>
+          <iyy>1.0004e-05</iyy>
+          <izz>5.87021e-06</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <visual name="geom_120">
+        <pose>0.0004558150895103778 -0.05107128884446038 0.01017915797788432 0.07939729552160379 -1.373769152442114 1.530390410036426</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_22.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.699999988079071 0.699999988079071 0.699999988079071 1</ambient>
+          <diffuse>0.699999988079071 0.699999988079071 0.699999988079071 1</diffuse>
+        </material>
+      </visual>
+      <collision name="link7_contact_inner">
+        <pose>0 -0.015 0.0025 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.024 0.03 0.005</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1.5</mu>
+              <mu2>1.5</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="link7_contact_outer">
+        <pose>0 -0.045 0.0025 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.03 0.03 0.005</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1.5</mu>
+              <mu2>1.5</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+    </link>
+    <joint name="joint7" type="prismatic">
+      <parent>link6</parent>
+      <child>link7</child>
+      <pose relative_to="link7">0 0 0 0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.05</upper>
+          <effort>10</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.2</damping>
+          <friction>0</friction>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="link8">
+      <pose relative_to="link6">0 0 0.13503 1.570800569437271 1.441957664383153e-12 3.141585307185822</pose>
+      <inertial>
+        <pose>-0.00027788 -0.0467674 -0.009210299999999999 -0.04207295083854001 -1.3823298258638 -1.567368223852829</pose>
+        <mass>0.0264822</mass>
+        <inertia>
+          <ixx>1.45133e-05</ixx>
+          <iyy>1.0004e-05</iyy>
+          <izz>5.87021e-06</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <visual name="geom_123">
+        <pose>0.0004558150895103778 -0.05107128884446038 0.01017915797788432 0.07939729552160379 -1.373769152442114 1.530390410036426</pose>
+        <geometry>
+          <mesh>
+            <uri>model://piper_d435_assets/meshes/compiled/mesh_23.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.792156994342804 0.8196079730987549 0.9333329796791077 1</ambient>
+          <diffuse>0.792156994342804 0.8196079730987549 0.9333329796791077 1</diffuse>
+        </material>
+      </visual>
+      <collision name="link8_contact_inner">
+        <pose>0 -0.015 0.0025 0 0 3.141592653589793</pose>
+        <geometry>
+          <box>
+            <size>0.024 0.03 0.005</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1.5</mu>
+              <mu2>1.5</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name="link8_contact_outer">
+        <pose>0 -0.045 0.0025 0 0 3.141592653589793</pose>
+        <geometry>
+          <box>
+            <size>0.03 0.03 0.005</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1.5</mu>
+              <mu2>1.5</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+    </link>
+    <joint name="joint8" type="prismatic">
+      <parent>link6</parent>
+      <child>link8</child>
+      <pose relative_to="link8">0 0 0 0 0 0</pose>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-0.05</lower>
+          <upper>0</upper>
+          <effort>10</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.2</damping>
+          <friction>0</friction>
+        </dynamics>
+      </axis>
+    </joint>
+    <frame name="HeadCameraOpticalFrame" attached_to="base">
+      <pose relative_to="base">0.31 0 0.1 -2.094395442980788 0 -1.570796326794897</pose>
+    </frame>
+    <frame name="WristCameraOpticalFrame" attached_to="link6">
+      <pose relative_to="link6">-0.07379376929766 0.043501833790784 0.038766391570204 -0.3466681722289707 0.006505735788928879 -1.567938847805767</pose>
+    </frame>
+    <joint name="world_fixed" type="fixed">
+      <parent>world</parent>
+      <child>base</child>
+    </joint>
+  </model>
+</sdf>

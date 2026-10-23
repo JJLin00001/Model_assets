@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>piper_d435_assets</name>
+  <version>1.0.0</version>
+  <description>Fixed-base Piper arm, wrist bracket and one D435 camera assets.</description>
+  <maintainer email="assets@example.invalid">Asset bundle maintainers</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <export><build_type>ament_cmake</build_type></export>
+</package>
