@@ -1,13 +1,18 @@
-# Model_assets：Go2 / Piper / D435 模型资产
+# Model_assets：Go2 / Piper / D435 / MID360 模型资产
 
-本仓库提供两套可独立复制、使用的机器人模型资产，包含网格、模型描述、相机安装坐标、预览图和校验工具。
+本仓库提供三套可独立复制、使用的机器人模型资产，包含网格、模型描述、相机安装坐标、预览图和校验工具。
 
-| 资产目录 | 模型组成 | 基座形式 | 活动关节 | D435 数量 |
-| --- | --- | --- | --- | --- |
-| `go2_piper_d435_assets` | Go2 四足机器人 + Piper 六轴机械臂 + 双指夹爪 + 腕部连接件 | 浮动基座 | 20：四足 12 + 机械臂 6 + 夹爪 2 | 2：头部、腕部 |
-| `piper_d435_assets` | Piper 六轴机械臂 + 双指夹爪 + 腕部连接件 | 固定底座 | 8：机械臂 6 + 夹爪 2 | 1：腕部 |
+| 资产目录 | 模型组成 | 基座形式 | 活动关节 | D435 数量 | MID360 数量 |
+| --- | --- | --- | --- | --- | --- |
+| `go2_piper_d435_assets` | Go2 四足机器人 + Piper 六轴机械臂 + 双指夹爪 + 腕部连接件 | 浮动基座 | 20：四足 12 + 机械臂 6 + 夹爪 2 | 2：头部、腕部 | 0 |
+| `piper_d435_assets` | Piper 六轴机械臂 + 双指夹爪 + 腕部连接件 | 固定底座 | 8：机械臂 6 + 夹爪 2 | 1：腕部 | 0 |
+| `go2_piper_d435_mid360_asset` | Go2 + Piper + 双 D435 + MID360 激光雷达及固定支架 | 浮动基座 | 20：四足 12 + 机械臂 6 + 夹爪 2 | 2：头部、腕部 | 1 |
 
-两套资产均包含 URDF、MuJoCo MJCF、Gazebo SDF、Isaac Sim USD 和 Isaac Lab 配置参考。资产为描述文件和几何资源；站立、抓取、真实硬件驱动及 ROS 2 控制器需由使用项目接入。
+三套资产均包含 URDF、MuJoCo MJCF、Gazebo SDF、Isaac Sim USD 和 Isaac Lab 配置参考。资产为描述文件和几何资源；站立、抓取、真实硬件驱动及 ROS 2 控制器需由使用项目接入。
+
+新增的 `go2_piper_d435_mid360_asset` 基于原 Go2 组合模型，按仓库中的俯视、前视、左视安装照片，将雷达布置在前肩附近的机背中央、头部 D435 后侧，圆顶向上。该目录可独立复制使用，原有两套资产保留。
+
+MID360 版本提供雷达与支架的简化几何、碰撞和质量描述，未配置 Livox 驱动、点云生成器或非重复扫描模拟。安装坐标、模型入口及预览见 [MID360 资产说明](go2_piper_d435_mid360_asset/README.md)。注意新目录及 ROS 2 包名以单数 `_asset` 结尾。
 
 ## 1. 克隆仓库
 
@@ -22,7 +27,8 @@ cd Model_assets
 Model_assets/
 ├── readme.md
 ├── go2_piper_d435_assets/
-└── piper_d435_assets/
+├── piper_d435_assets/
+└── go2_piper_d435_mid360_asset/
 ```
 
 每套资产目录包含：
@@ -47,14 +53,16 @@ Model_assets/
 └── licenses/                 # 上游许可证与来源说明
 ```
 
+MID360 版本另含 `mid360_mount.json`（安装坐标与新增质量）、`installation_views.png`（三视图及安装细节）、`previews/`（单独视图）和 `tools/`（新增网格及预览生成脚本）。
+
 ## 2. 适配环境与验证范围
 
 当前开发机器为 **Ubuntu 24.04.3 LTS**，安装 **ROS 2 Jazzy**。各格式的验证范围如下，不能将格式可读取等同于完整仿真验收。
 
 | 使用方式 | 环境 / 依赖 | 已验证范围 |
 | --- | --- | --- |
-| ROS 2 / RViz | Ubuntu 24.04、ROS 2 Jazzy、ament_cmake、colcon、RViz2、robot_state_publisher、joint_state_publisher_gui | 两套资产的 URDF 均通过原生 `check_urdf` 解析；构建及 RViz 操作见下文 |
-| MuJoCo | 已验证 MuJoCo 3.9.0；物理校验需要 NumPy、SciPy | 两套资产的编译、运动学、短时步进和 EGL 离屏预览通过 |
+| ROS 2 / RViz | Ubuntu 24.04、ROS 2 Jazzy、ament_cmake、colcon、RViz2、robot_state_publisher、joint_state_publisher_gui | 三套资产的 URDF 均通过原生 `check_urdf` 解析；MID360 包另通过 colcon 构建及安装资源检查；使用方式见下文 |
+| MuJoCo | 已验证 MuJoCo 3.9.0；物理校验需要 NumPy、SciPy | 三套资产的编译、运动学、短时步进和 EGL 离屏预览通过 |
 | Isaac Sim / OpenUSD | 支持 USD 的 Isaac Sim / OpenUSD 环境 | USD 打开、资源闭包、物理层级及位姿检查通过；未进行 Isaac Sim GUI 运行验收 |
 | Isaac Lab | 自行配置匹配的 Isaac Sim / Isaac Lab 环境 | 提供 `model_cfg.py` 参考；未指定已验收的 Isaac Lab 版本组合 |
 | Gazebo Sim | SDF 1.9，预览 world 面向 Gazebo Sim Harmonic | XML、资源和运动学已检查；未进行 Gazebo 原生启动、渲染及动力学验收 |
@@ -95,15 +103,29 @@ conda config --set auto_activate_base false
 
 ## 4. 编译模型描述包
 
-可直接在仓库根目录编译两套资产，无需移动到其他工作空间：
+可直接在仓库根目录编译三套资产，无需移动到其他工作空间：
 
 ```bash
 source /opt/ros/jazzy/setup.bash
 cd ~/Model_assets
 
 colcon build \
-  --base-paths ./go2_piper_d435_assets ./piper_d435_assets \
-  --packages-select go2_piper_d435_assets piper_d435_assets \
+  --base-paths ./go2_piper_d435_assets ./piper_d435_assets ./go2_piper_d435_mid360_asset \
+  --packages-select go2_piper_d435_assets piper_d435_assets go2_piper_d435_mid360_asset \
+  --cmake-args -DPython3_EXECUTABLE=/usr/bin/python3
+
+source install/setup.bash
+```
+
+仅编译带 MID360 的 Go2 组合模型：
+
+```bash
+source /opt/ros/jazzy/setup.bash
+cd ~/Model_assets
+
+colcon build \
+  --base-paths ./go2_piper_d435_mid360_asset \
+  --packages-select go2_piper_d435_mid360_asset \
   --cmake-args -DPython3_EXECUTABLE=/usr/bin/python3
 
 source install/setup.bash
@@ -131,6 +153,8 @@ source install/setup.bash
 ros2 pkg prefix piper_d435_assets
 # 如果也编译了完整 Go2 资产：
 ros2 pkg prefix go2_piper_d435_assets
+# 如果编译了 MID360 版本：
+ros2 pkg prefix go2_piper_d435_mid360_asset
 ```
 
 ### 修复 `ModuleNotFoundError: No module named 'catkin_pkg'`
@@ -209,7 +233,21 @@ ros2 run robot_state_publisher robot_state_publisher \
   -p robot_description:="$(cat "$ASSET_SHARE/urdf/go2_piper_d435.ros.urdf")"
 ```
 
-终端 2、3 和 RViz 设置相同。默认命名下，一次查看一套模型，以避免 `/robot_description`、`/joint_states` 和同名 TF 帧相互覆盖。
+### 查看 Go2 + Piper + 双 D435 + MID360
+
+先构建 MID360 包，停止正在运行的其他模型节点，再使用以下终端 1 命令：
+
+```bash
+source /opt/ros/jazzy/setup.bash
+source ~/Model_assets/install/setup.bash
+
+ASSET_SHARE="$(ros2 pkg prefix --share go2_piper_d435_mid360_asset)"
+ros2 run robot_state_publisher robot_state_publisher \
+  --ros-args \
+  -p robot_description:="$(cat "$ASSET_SHARE/urdf/go2_piper_d435_mid360.ros.urdf")"
+```
+
+两种 Go2 版本的终端 2、3 和 RViz 设置与 Piper 示例相同。默认命名下，一次查看一套模型，以避免 `/robot_description`、`/joint_states` 和同名 TF 帧相互覆盖。
 
 ### RViz 常见问题
 
@@ -249,6 +287,13 @@ cd ~/Model_assets
 python -m mujoco.viewer --mjcf=go2_piper_d435_assets/mujoco/scene.xml
 ```
 
+打开 Go2 + Piper + 双 D435 + MID360：
+
+```bash
+cd ~/Model_assets
+python -m mujoco.viewer --mjcf=go2_piper_d435_mid360_asset/mujoco/scene.xml
+```
+
 代码中读取场景并使用 `home` 姿态：
 
 ```python
@@ -262,7 +307,7 @@ mujoco.mj_resetDataKeyframe(model, data, 0)
 mujoco.mj_forward(model, data)
 ```
 
-Piper 模型为 `nq=8`、`nv=8`、7 个执行器、1 台相机；Go2 组合模型为 `nq=27`、`nv=26`、19 个执行器、2 台相机。模型保留力矩/力控制接口，初始姿态不提供抗重力或站立控制；开始物理步进后，姿态会随动力学变化。
+Piper 模型为 `nq=8`、`nv=8`、7 个执行器、1 台相机；两个 Go2 组合模型均为 `nq=27`、`nv=26`、19 个执行器、2 台相机。MID360 和支架为固定部件，不增加活动关节；MID360 版共有 27 个带质量的刚体。模型保留力矩/力控制接口，初始姿态不提供抗重力或站立控制；开始物理步进后，姿态会随动力学变化。
 
 ## 7. 使用 Isaac Sim / Isaac Lab
 
@@ -272,10 +317,11 @@ Piper 模型为 `nq=8`、`nv=8`、7 个执行器、1 台相机；Go2 组合模�
 | --- | --- | --- |
 | Piper + 单 D435 | `piper_d435_assets/isaac_sim/piper_d435.usd` | `/piper_d435` |
 | Go2 + Piper + 双 D435 | `go2_piper_d435_assets/isaac_sim/go2_piper_d435.usd` | `/go2_piper_d435` |
+| Go2 + Piper + 双 D435 + MID360 | `go2_piper_d435_mid360_asset/isaac_sim/go2_piper_d435_mid360.usd` | `/go2_piper_d435_mid360` |
 
 USD 的几何与物理描述已封装，读取 USD 本身不依赖其他资产目录。统一使用米制、Z 向上。
 
-Isaac Lab 配置参考位于各资产目录的 `isaac_sim/model_cfg.py`，Piper 使用 `PIPER_D435_CFG`，Go2 组合模型使用 `GO2_PIPER_CFG`。应在配置好 Isaac Lab 的环境内导入，再接入自己的场景、PhysicsScene 和控制逻辑。
+Isaac Lab 配置参考位于各资产目录的 `isaac_sim/model_cfg.py`，Piper 使用 `PIPER_D435_CFG`，两个 Go2 组合模型均使用各自配置文件中的 `GO2_PIPER_CFG`。应在配置好 Isaac Lab 的环境内导入，再接入自己的场景、PhysicsScene 和控制逻辑。
 
 USD 提供 D435 外观及 `WristCameraOpticalFrame`；Go2 模型还提供 `HeadCameraOpticalFrame`。获取 RGB-D 图像需另建相机传感器。光学坐标为 X 向右、Y 向下、Z 向前；安装位姿沿用 CAD 名义值。
 
@@ -287,9 +333,10 @@ USD 提供 D435 外观及 `WristCameraOpticalFrame`；Go2 模型还提供 `HeadC
 cd ~/Model_assets
 export GZ_SIM_RESOURCE_PATH="$PWD${GZ_SIM_RESOURCE_PATH:+:$GZ_SIM_RESOURCE_PATH}"
 
-# 二选一：
+# 三选一：
 gz sim piper_d435_assets/gazebo/preview.sdf
 # gz sim go2_piper_d435_assets/gazebo/preview.sdf
+# gz sim go2_piper_d435_mid360_asset/gazebo/preview.sdf
 ```
 
 可在已安装 `gz sdf` 的环境内检查 SDF：
@@ -297,9 +344,10 @@ gz sim piper_d435_assets/gazebo/preview.sdf
 ```bash
 gz sdf -k piper_d435_assets/gazebo/model.sdf
 gz sdf -k go2_piper_d435_assets/gazebo/model.sdf
+gz sdf -k go2_piper_d435_mid360_asset/gazebo/model.sdf
 ```
 
-`preview.sdf` 将整机设为静态，便于查看装配，并包含示例 RGB-D 传感器。动态使用时在自己的 world 引用对应 `model://..._assets` 模型、设置初始关节状态并接入控制器。Piper 模型的 `world_fixed` 始终固定底座；Go2 模型为浮动基座。
+`preview.sdf` 将整机设为静态，便于查看装配，并包含示例 RGB-D 传感器。动态使用时在自己的 world 引用对应 `model://<资产目录名>` 模型（MID360 版为 `model://go2_piper_d435_mid360_asset`）、设置初始关节状态并接入控制器。Piper 模型的 `world_fixed` 始终固定底座；Go2 模型为浮动基座。
 
 SDF 1.9 中未配置夹爪 mimic 插件，动态控制需同时向两指发送位置目标。相机为通用渲染传感器，不代表完整 D435 硬件成像模型。
 
@@ -310,8 +358,20 @@ SDF 1.9 中未配置夹爪 mimic 插件，动态控制需同时向两指发送�
 - 建议总开口范围为 `0–0.076 m`，模型硬限位允许 `0–0.10 m`。
 - MuJoCo 使用 equality 耦合，URDF 带 mimic；其他控制栈需确认其耦合支持，必要时同时控制两指。
 - 独立 Piper 底座 CAD 原点位于模型原点，`joint1` 相对底座高度为 `0.123 m`。支架和相机随 `link6` 运动。
-- 相机、支架已包含于源模型的复合惯量，不重复增加质量。独立 Piper 底座惯量在源包中与 Go2 合并，因此本资产采用固定底座，未推测其独立动力学参数。
+- 原有 D435 相机及腕部支架已包含于源模型的复合惯量，不重复增加质量。独立 Piper 底座惯量在源包中与 Go2 合并，因此本资产采用固定底座，未推测其独立动力学参数。
 - 各格式与配置的控制参数可能存在差异，详见对应资产 README 与 `joint_metadata.json`。
+
+### MID360 固定装配
+
+MID360 的安装位置按照片近似，统一使用米制和 `base` 坐标（X 朝前、Y 朝左、Z 朝上）：
+
+| 部件 | 父坐标系 | xyz（m） | rpy（rad） |
+| --- | --- | --- | --- |
+| `mid360_mount` 支架 | `base` | `0.205 0 0.085` | `0 0 0` |
+| `mid360_link` 雷达 | `mid360_mount` | `0 0 0.020` | `0 0 0` |
+| `mid360_link` 合成位置 | `base` | `0.205 0 0.105` | `0 0 0` |
+
+`mid360_link` 原点为雷达本体底面中心，属于机械装配坐标，不代表实测光学中心或 IMU 外参。新增质量为 0.340 kg（雷达 0.265 kg、支架估计 0.075 kg），整机模型总质量约 19.185414 kg；新增质心、惯量和支架尺寸采用估计值。详细参数见 [mid360_mount.json](go2_piper_d435_mid360_asset/mid360_mount.json)。
 
 ## 10. 校验资产
 
@@ -321,6 +381,7 @@ SDF 1.9 中未配置夹爪 mimic 插件，动态控制需同时向两指发送�
 cd ~/Model_assets
 python3 piper_d435_assets/validate.py
 python3 go2_piper_d435_assets/validate.py
+python3 go2_piper_d435_mid360_asset/validate.py
 ```
 
 在安装了 MuJoCo、NumPy、SciPy 的 Python 环境中进行物理校验：
@@ -328,15 +389,17 @@ python3 go2_piper_d435_assets/validate.py
 ```bash
 python piper_d435_assets/validate.py --physics
 python go2_piper_d435_assets/validate.py --physics
+python go2_piper_d435_mid360_asset/validate.py --physics
 ```
 
-Go2 资产还提供 USD 检查选项，需使用可导入 `pxr` 的 Python 环境：
+两个 Go2 资产还提供 USD 检查选项，需使用可导入 `pxr` 的 Python 环境：
 
 ```bash
 python go2_piper_d435_assets/validate.py --usd
+python go2_piper_d435_mid360_asset/validate.py --usd
 ```
 
-具体历史验证结果见 [Piper 校验记录](piper_d435_assets/VALIDATION.md) 与 [Go2 组合模型校验记录](go2_piper_d435_assets/VALIDATION.md)。修改资产包内已记录文件后，哈希校验会报告变化；重新导出或维护资产时需同步更新相应清单。
+具体已执行的验证见 [Piper 校验记录](piper_d435_assets/VALIDATION.md)、[Go2 组合模型校验记录](go2_piper_d435_assets/VALIDATION.md) 和 [MID360 版本校验记录](go2_piper_d435_mid360_asset/VALIDATION.md)。MID360 版已完成跨格式运动学、质量惯量、短时步进、USD 资源闭包、ROS 2 构建及目录迁移后的独立加载校验。修改资产包内已记录文件后，哈希校验会报告变化；重新导出或维护资产时需同步更新相应清单。
 
 ## 11. 预览与许可证
 
@@ -351,5 +414,13 @@ python go2_piper_d435_assets/validate.py --usd
 ![Go2、Piper 与双 D435](go2_piper_d435_assets/preview.png)
 
 详细说明：[go2_piper_d435_assets/README.md](go2_piper_d435_assets/README.md)。
+
+### Go2 + Piper + 双 D435 + MID360
+
+![Go2、Piper、双 D435 与 MID360](go2_piper_d435_mid360_asset/preview.png)
+
+查看 [安装三视图及细节](go2_piper_d435_mid360_asset/installation_views.png)、[雷达安装近景](go2_piper_d435_mid360_asset/previews/mid360_detail.png) 和 [详细使用说明](go2_piper_d435_mid360_asset/README.md)。
+
+新增 MID360 网格为程序生成的简化几何，未引入第三方 MID360 CAD；网格及预览重建脚本位于该包 `tools/` 中。
 
 模型包含不同上游来源的资源，使用和分发时请保留各资产目录的 `licenses/`，并遵循对应许可证与 `SOURCES.md` 中的说明。
